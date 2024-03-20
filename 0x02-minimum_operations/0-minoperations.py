@@ -12,7 +12,7 @@ def minOperations(n):
     Returns:
         _type_: _description_
     """
-    if n == 1:
+    if n == 1 or n == 0 or n < 0:
         return 0
     dp = [float('inf')] * (n + 1)
     dp[1] = 0
