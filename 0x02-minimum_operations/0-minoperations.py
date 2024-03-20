@@ -20,4 +20,7 @@ def minOperations(n):
         for j in range(1, i):
             if i % j == 0:
                 dp[i] = min(dp[i], dp[j] + i // j)
+        for j in range(2, int(i ** 0.5) + 1):
+            if i % j == 0:
+                dp[i] = min(dp[i], dp[i // j] + j)
     return dp[n] if dp[n] != float('inf') else 0
