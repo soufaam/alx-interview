@@ -26,7 +26,6 @@ line = sys.stdin.readline()
 while line != '':
     if not check_format(line):
         continue
-    print(line)
     if count == 10:
         count = 0
         print(f'File size: {file_size}')
