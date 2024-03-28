@@ -41,5 +41,5 @@ while line != '':
         else:
             status_dic[status_code] = 1
     count += 1
-    file_size += int(splited_line[-2])
+    file_size += int(splited_line[-1])
     line = sys.stdin.readline()
