@@ -22,10 +22,14 @@ status_list = [200, 301, 400, 401, 403, 404, 405, 500]
 count = 0
 status_dic = {}
 file_size = 0
-line = sys.stdin.readline()
-while line != '':
+while True:
+    line = sys.stdin.readline()
+    if not line:
+        break
+    line = line.strip('\n')
     try:
         if not check_format(line):
+            count += 1
             continue
         if count == 10:
             count = 0
@@ -33,6 +37,7 @@ while line != '':
             for scode in status_list:
                 if scode in status_dic:
                     print(f'{scode}: {status_dic[scode]}')
+            sys.stdout.flush()
         splited_line = line.split()
         status_code = int(splited_line[-2])
         if status_code in status_list:
@@ -42,9 +47,13 @@ while line != '':
                 status_dic[status_code] = 1
         count += 1
         file_size += int(splited_line[-1])
-        line = sys.stdin.readline()
     except KeyboardInterrupt:
         print(f'File size: {file_size}')
         for scode in status_list:
             if scode in status_dic:
                 print(f'{scode}: {status_dic[scode]}')
+print(f'File size: {file_size}')
+if line == '':
+    for scode in status_list:
+        if scode in status_dic:
+            print(f'{scode}: {status_dic[scode]}')
