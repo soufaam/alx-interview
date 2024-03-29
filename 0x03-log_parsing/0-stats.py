@@ -24,22 +24,27 @@ status_dic = {}
 file_size = 0
 line = sys.stdin.readline()
 while line != '':
-    if not check_format(line):
-        continue
-    if count == 10:
-        count = 0
+    try:
+        if not check_format(line):
+            continue
+        if count == 10:
+            count = 0
+            print(f'File size: {file_size}')
+            for scode in status_list:
+                if scode in status_dic:
+                    print(f'{scode}: {status_dic[scode]}')
+        splited_line = line.split()
+        status_code = int(splited_line[-2])
+        if status_code in status_list:
+            if status_code in status_dic:
+                status_dic[status_code] += 1
+            else:
+                status_dic[status_code] = 1
+        count += 1
+        file_size += int(splited_line[-1])
+        line = sys.stdin.readline()
+    except KeyboardInterrupt:
         print(f'File size: {file_size}')
         for scode in status_list:
             if scode in status_dic:
                 print(f'{scode}: {status_dic[scode]}')
-        file_size = 0
-    splited_line = line.split()
-    status_code = int(splited_line[-2])
-    if status_code in status_list:
-        if status_code in status_dic:
-            status_dic[status_code] += 1
-        else:
-            status_dic[status_code] = 1
-    count += 1
-    file_size += int(splited_line[-1])
-    line = sys.stdin.readline()
