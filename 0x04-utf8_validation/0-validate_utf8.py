@@ -9,7 +9,7 @@ def validUTF8(data):
     """Return: True if data is a valid UTF-8 encoding,
     else return False"""
     for element in data:
-        if 0 < element < 256:
+        if 0 <= element < 256:
             continue
         else:
             return False
